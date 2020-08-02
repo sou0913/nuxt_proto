@@ -7,7 +7,7 @@
     ></b-pagination>
     <b-table striped hover :items="employees">
       <template v-slot:cell(name)="data">
-        <b-link to="/">{{ data.value }}</b-link>
+        <b-link :to="'/employee/' + data.item.id">{{ data.value }}</b-link>
       </template>
     </b-table>
   </div>
