@@ -1,11 +1,11 @@
 <template>
   <div>
-    <!-- <b-pagination
+    <b-pagination
       v-model="currentPage"
       :total-rows="rows"
-      @input="fetchEmployees"
-    ></b-pagination> -->
-    <b-table striped hover :items="questions">
+      @input="fetchProblems"
+    ></b-pagination>
+    <b-table striped hover :items="problems">
       <template v-slot:cell(title)="data">
         <b-link :to="'/problem/' + data.item.id">{{ data.value }}</b-link>
       </template>
@@ -19,18 +19,18 @@ export default {
     return {
       currentPage: 1,
       rows: 0,
-      questions: [{id: 1, title: '問題1', author: '佐々木'}, {id: 2, title: '問題2', author: '佐々木'}],
+      problems: [],
     };
   },
-  // async fetch() {
-  //   this.fetchEmployees(1)
-  // },
-  // methods: {
-  //   async fetchEmployees(page) {
-  //     const response = await this.$axios.$get(`http://localhost:3000/employees?page=${page}`)
-  //     this.employees = response['employees']
-  //     this.rows = response['total_rows']
-  //   }
-  // }
+  async fetch() {
+    this.fetchProblems(1)
+  },
+  methods: {
+    async fetchProblems(page) {
+      const response = await this.$axios.$get(`http://localhost:3000/problems?page=${page}`)
+      this.problems = response['problems']
+      this.rows = response['total_rows']
+    }
+  }
 }
 </script>
