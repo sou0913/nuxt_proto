@@ -18,16 +18,17 @@ export default {
     return {
       regex: '',
       // replacement: '',
-      target: 'abc'
+      target: ''
     };
   },
   computed: {
     regexState() {
       return this.target == this.target.match(this.regex) ? true : false
     }
+  },
+  async fetch() {
+    const response = await this.$axios.$get(`http://localhost:3000/problems/${this.$route.params.id}`)
+    this.target = response['target']
   }
-  // async fetch() {
-  //   this.form= await this.$axios.$get(`http://localhost:3000/employees/${this.$route.params.id}`)
-  // }
 };
 </script>
