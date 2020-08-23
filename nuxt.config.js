@@ -45,6 +45,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/dotenv',
   ],
   /*
   ** Nuxt.js modules
@@ -55,7 +56,7 @@ export default {
     '@nuxtjs/axios'
   ],
   axios: {
-
+    baseURL: process.env.NODE_ENV == 'production' ? 'https://railsproto-uiqhtbcbda-an.a.run.app' : 'http://localhost:3000'
   },
   /*
   ** Build configuration

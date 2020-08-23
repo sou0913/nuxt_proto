@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     async fetchProblems(page) {
-      const response = await this.$axios.$get(`http://localhost:3000/problems?page=${page}`)
+      const response = await this.$axios.$get(`/problems?page=${page}`)
       this.problems = response['problems']
       this.rows = response['total_rows']
     }

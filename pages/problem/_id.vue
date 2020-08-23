@@ -27,7 +27,7 @@ export default {
     }
   },
   async fetch() {
-    const response = await this.$axios.$get(`http://localhost:3000/problems/${this.$route.params.id}`)
+    const response = await this.$axios.$get(`/problems/${this.$route.params.id}`)
     this.target = response['target']
   }
 };
