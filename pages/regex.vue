@@ -6,9 +6,9 @@
       @input="fetchEmployees"
     ></b-pagination> -->
     <b-table striped hover :items="questions">
-      <!-- <template v-slot:cell(name)="data">
-        <b-link :to="'/employee/' + data.item.id">{{ data.value }}</b-link>
-      </template> -->
+      <template v-slot:cell(title)="data">
+        <b-link :to="'/problem/' + data.item.id">{{ data.value }}</b-link>
+      </template>
     </b-table>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
     return {
       currentPage: 1,
       rows: 0,
-      questions: [{title: '問題1', author: '佐々木'}, {title: '問題2', author: '佐々木'}],
+      questions: [{id: 1, title: '問題1', author: '佐々木'}, {id: 2, title: '問題2', author: '佐々木'}],
     };
   },
   // async fetch() {
