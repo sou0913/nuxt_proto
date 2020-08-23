@@ -5,6 +5,7 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
         <b-nav-item to="/employees">ページネーションdemo</b-nav-item>
+        <b-nav-item to="/regex">正規表現demo</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
