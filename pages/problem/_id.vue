@@ -2,7 +2,7 @@
   <div>
     <p>問題:aをbに入れ替えてください</p>
     <b-form-input v-model="regex" :state="regexState" placeholder="正規表現"></b-form-input>
-    <b-form-input v-model="replacement" placeholder="置換後文字列"></b-form-input>
+    <!-- <b-form-input v-model="replacement" placeholder="置換後文字列"></b-form-input> -->
     <p>{{ target }}</p>
     <div v-show="regexState">
     <p>正解!</p>
@@ -18,7 +18,7 @@ export default {
     return {
       id: parseInt(this.$route.params.id),
       regex: '',
-      replacement: '',
+      // replacement: '',
       target: 'abc'
     };
   },
