@@ -5,7 +5,8 @@
       :total-rows="rows"
       @input="fetchProblems"
     ></b-pagination>
-    <b-table striped hover :items="problems">
+    <b-spinner v-if="loading" variant="primary" label="Spinning"></b-spinner>
+    <b-table  v-else striped hover :items="problems">
       <template v-slot:cell(title)="data">
         <b-link :to="'/problem/' + data.item.id">{{ data.value }}</b-link>
       </template>
@@ -24,6 +25,11 @@ export default {
   },
   async fetch() {
     this.fetchProblems(1)
+  },
+  computed: {
+    loading() {
+      return this.problems.length == 0 ? true : false
+    }
   },
   methods: {
     async fetchProblems(page) {
