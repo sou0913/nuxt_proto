@@ -7,7 +7,7 @@
     <div v-show="regexState">
     <p>正解!</p>
     <nuxt-link to="/regex">一覧へ戻る</nuxt-link>
-    <nuxt-link :to="'/problem/' + (id + 1)">次の問題へ</nuxt-link>
+    <nuxt-link :to="'/problem/' + (parseInt(this.$route.params.id) + 1)">次の問題へ</nuxt-link>
     </div>
   </div>
 </template>
@@ -16,7 +16,6 @@
 export default {
   data() {
     return {
-      id: parseInt(this.$route.params.id),
       regex: '',
       // replacement: '',
       target: 'abc'
