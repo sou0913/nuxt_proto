@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     regexState() {
-      return this.target.match(this.regex) ? true : false
+      return this.target == this.target.match(this.regex) ? true : false
     }
   }
   // async fetch() {
