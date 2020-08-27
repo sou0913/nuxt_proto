@@ -1,27 +1,9 @@
 <template>
   <div>
     <p>問題: {{ title }}</p>
-    <p>
-      下の文字列から{{
-        target
-      }}にマッチする正規表現を入力してください（/は不要です）
-    </p>
-    <p v-html="coloredStatement"></p>
-    <b-form-input
-      v-model="regex"
-      :state="regexState"
-      placeholder="正規表現"
-    ></b-form-input>
-    <b-form-input
-      v-if="after_replace_answer"
-      v-model="replacement"
-      :state="replacementState"
-      placeholder="置換後文字列"
-    ></b-form-input>
-    <div v-show="regexState">
-      <p>正解!</p>
-      <nuxt-link to="/regex">一覧へ戻る</nuxt-link>
-    </div>
+    <p>{{ senario }}</p>
+    <FindProblem v-if="isFindProblem" />
+    <ReplaceProblem v-if="isReplaceProblem" />
   </div>
 </template>
 
@@ -40,42 +22,11 @@ export default {
     };
   },
   computed: {
-    regexState() {
-      try {
-        return this.target == this.statement.match(this.regex);
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-        } else {
-          logMyErrors(e);
-        }
-      }
+    isFindProblem() {
+      return this.type == "FindProblem"
     },
-    replacementState() {
-      try {
-        const after_replace = this.statement.replace(
-          this.regex,
-          this.replacement
-        );
-        return this.after_replace_answer == after_replace;
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-        } else {
-          logMyErrors(e);
-        }
-      }
-    },
-    coloredStatement() {
-      try {
-        return this.statement.replace(
-          new RegExp(`([\s\S]*)(${this.regex})([\s\S]*)`),
-          "<font color='red'>$2</font>"
-        );
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-        } else {
-          logMyErrors(e);
-        }
-      }
+    isReplaceProblem() {
+      return this.type == "ReplaceProblem"
     }
   },
   async fetch() {
