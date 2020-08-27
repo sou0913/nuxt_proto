@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p>{{ statement }}</p>
     <b-form-input v-model="regex" placeholder="正規表現"></b-form-input>
     <b-form-input
       v-model="replacement"
@@ -26,7 +27,7 @@ export default {
   computed: {
     afterReplace() {
       try {
-        return this.state.ment.replace(this.regex, this.replacement);
+        return this.statement.replace(new RegExp(this.regex), this.replacement);
       } catch (e) {
         if (e instanceof SyntaxError) {
         } else {

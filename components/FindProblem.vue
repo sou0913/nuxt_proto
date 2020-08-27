@@ -28,7 +28,7 @@ export default {
       } catch (e) {
         if (e instanceof SyntaxError) {
         } else {
-          logMyErrors(e);
+          // logMyErrors(e);
         }
       }
     },
@@ -41,7 +41,7 @@ export default {
       } catch (e) {
         if (e instanceof SyntaxError) {
         } else {
-          logMyErrors(e);
+          // logMyErrors(e);
         }
       }
     }
