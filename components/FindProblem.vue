@@ -1,11 +1,12 @@
 <template>
   <div>
-    <p v-html="coloredStatement"></p>
+    <p>{{ target }}にマッチさせてください</p>
     <b-form-input
       v-model="regex"
       :state="regexState"
       placeholder="正規表現"
     ></b-form-input>
+    <p v-html="coloredStatement"></p>
     <div v-show="regexState">
       <p>正解!</p>
       <nuxt-link to="/regex">一覧へ戻る</nuxt-link>

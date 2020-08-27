@@ -8,6 +8,7 @@
       placeholder="置換後文字列"
     ></b-form-input>
     <p>置換後文字列： {{ afterReplace }}</p>
+    <p>答え： {{ afterReplaceAnswer }}</p>
     <div v-show="replacementState">
       <p>正解!</p>
       <nuxt-link to="/regex">一覧へ戻る</nuxt-link>
