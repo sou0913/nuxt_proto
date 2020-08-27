@@ -15,11 +15,10 @@
 
 <script>
 export default {
+  props: ['target', 'statement'],
   data() {
     return {
       regex: "",
-      target: "",
-      statement: "",
     };
   },
   computed: {

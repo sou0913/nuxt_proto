@@ -2,12 +2,11 @@
   <div>
     <b-form-input v-model="regex" placeholder="正規表現"></b-form-input>
     <b-form-input
-      v-if="after_replace_answer"
       v-model="replacement"
       :state="replacementState"
       placeholder="置換後文字列"
     ></b-form-input>
-    <p>置換後文字列： {{ after_replace }}</p>
+    <p>置換後文字列： {{ afterReplace }}</p>
     <div v-show="replacementState">
       <p>正解!</p>
       <nuxt-link to="/regex">一覧へ戻る</nuxt-link>
@@ -17,18 +16,15 @@
 
 <script>
 export default {
+  props: ['statement', 'afterReplaceAnswer'],
   data() {
     return {
-      type: "",
       regex: "",
       replacement: "",
-      target: "",
-      statement: "",
-      after_replace_answer: ""
     };
   },
   computed: {
-    after_replace() {
+    afterReplace() {
       try {
         return this.state.ment.replace(this.regex, this.replacement);
       } catch (e) {
@@ -40,7 +36,7 @@ export default {
     },
     replacementState() {
       try {
-        return this.after_replace_answer == this.after_replace;
+        return this.afterReplaceAnswer == this.afterReplace;
       } catch (e) {
         if (e instanceof SyntaxError) {
         } else {

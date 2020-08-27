@@ -2,8 +2,16 @@
   <div>
     <p>問題: {{ title }}</p>
     <p>{{ senario }}</p>
-    <FindProblem v-if="isFindProblem" />
-    <ReplaceProblem v-if="isReplaceProblem" />
+    <FindProblem
+      v-if="isFindProblem" 
+      :target="target"
+      :statement="statement"
+    />
+    <ReplaceProblem
+      v-if="isReplaceProblem"
+      :statement="statement"
+      :after-replace-answer="afterReplaceAnswer"
+    />
   </div>
 </template>
 
@@ -12,21 +20,20 @@ export default {
   data() {
     return {
       type: "",
-      regex: "",
       replacement: "",
       title: "",
       target: "",
       statement: "",
       senario: "",
-      after_replace_answer: ""
+      afterReplaceAnswer: ""
     };
   },
   computed: {
     isFindProblem() {
-      return this.type == "FindProblem"
+      return this.type == "FindProblem";
     },
     isReplaceProblem() {
-      return this.type == "ReplaceProblem"
+      return this.type == "ReplaceProblem";
     }
   },
   async fetch() {
@@ -37,8 +44,8 @@ export default {
     this.title = response["title"];
     this.target = response["target"];
     this.statement = response["statement"];
-    this.senario = response["senario"]
-    this.after_replace_answer = response["after_replace_answer"]
+    this.senario = response["senario"];
+    this.afterReplaceAnswer = response["after_replace_answer"];
   }
 };
 </script>
