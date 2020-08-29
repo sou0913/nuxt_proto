@@ -24,9 +24,6 @@
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card>
   </b-container>
 </template>
 
@@ -51,10 +48,10 @@ export default {
   },
   computed: {
     isFindProblem() {
-      return this.form.type == "FindProblem"
+      return this.form.type == "FindProblem";
     },
     isReplaceProblem() {
-      return this.form.type == "ReplaceProblem"
+      return this.form.type == "ReplaceProblem";
     }
   },
   methods: {
@@ -62,9 +59,16 @@ export default {
       const response = await this.$axios.$get(`/problem_types`);
       this.problemTypes = response;
     },
-    onSubmit(evt) {
+    async onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      try {
+        await this.$axios.$post(`/problems`, {
+          problem: this.form
+        });
+        alert("保存しました");
+      } catch (e) {
+        alert(e);
+      }
     }
   }
 };
