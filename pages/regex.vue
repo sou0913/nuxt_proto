@@ -51,6 +51,7 @@ export default {
       try {
         await this.$axios.$delete(`/problems/${id}`);
         alert("削除しました");
+        this.fetchProblems(this.currentPage);
       } catch (e) {
         alert(e);
       }

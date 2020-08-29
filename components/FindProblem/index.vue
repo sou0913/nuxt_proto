@@ -27,8 +27,8 @@ export default {
     regexState() {
       try {
         return (
-          this.matches.every(v => v.match(this.regex)) &&
-          this.noMatches.every(v => !v.match(this.regex))
+          this.matches.every(v => v.match(this.regex) == v) &&
+          this.noMatches.every(v => !(v.match(this.regex) == v))
         );
       } catch (e) {
         if (e instanceof SyntaxError) {
