@@ -4,8 +4,6 @@
     <p>{{ senario }}</p>
     <FindProblem
       v-if="isFindProblem"
-      :target="target"
-      :statement="statement"
       :matches="matches"
       :noMatches="noMatches"
     />
@@ -24,7 +22,6 @@ export default {
       type: "",
       replacement: "",
       title: "",
-      target: "",
       statement: "",
       senario: "",
       afterReplaceAnswer: "",

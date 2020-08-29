@@ -7,25 +7,22 @@
           :options="problemTypes"
         ></b-form-select>
       </b-form-group>
-      <b-form-group label="title">
+      <b-form-group label="title（問題タイトル）">
         <b-form-input v-model="form.title"></b-form-input>
       </b-form-group>
-      <b-form-group label="statement">
-        <b-form-input v-model="form.statement"></b-form-input>
-      </b-form-group>
-      <b-form-group label="matches" v-if="isFindProblem">
+      <b-form-group label="matches（マッチさせる単語）" v-if="isFindProblem">
         <b-form-tags v-model="form.matches"></b-form-tags>
       </b-form-group>
-      <b-form-group label="noMatches" v-if="isFindProblem">
+      <b-form-group label="noMatches（マッチさせない単語）" v-if="isFindProblem">
         <b-form-tags v-model="form.noMatches"></b-form-tags>
       </b-form-group>
-      <b-form-group label="target" v-if="isFindProblem">
-        <b-form-input v-model="form.target"></b-form-input>
-      </b-form-group>
-      <b-form-group label="senario" v-if="isReplaceProblem">
+      <b-form-group label="senario（問題文）" v-if="isReplaceProblem">
         <b-form-input v-model="form.senario"></b-form-input>
       </b-form-group>
-      <b-form-group label="afterReplaceAnswer" v-if="isReplaceProblem">
+      <b-form-group label="statement（置換させる対象　例: 100円）" v-if="isReplaceProblem">
+        <b-form-input v-model="form.statement"></b-form-input>
+      </b-form-group>
+      <b-form-group label="afterReplaceAnswer（置換後の答え 例: ¥100）" v-if="isReplaceProblem">
         <b-form-input v-model="form.afterReplaceAnswer"></b-form-input>
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>

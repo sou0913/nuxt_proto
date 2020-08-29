@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  props: ["target", "statement", "matches", "noMatches"],
+  props: ["matches", "noMatches"],
   data() {
     return {
       regex: ""
