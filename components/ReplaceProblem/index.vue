@@ -11,8 +11,8 @@
     <p>答え： {{ afterReplaceAnswer }}</p>
     <div v-show="replacementState">
       <p>正解!</p>
-      <nuxt-link to="/regex">一覧へ戻る</nuxt-link>
     </div>
+    <nuxt-link to="/regex">一覧へ戻る</nuxt-link>
   </div>
 </template>
 

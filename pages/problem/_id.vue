@@ -3,9 +3,11 @@
     <p>問題: {{ title }}</p>
     <p>{{ senario }}</p>
     <FindProblem
-      v-if="isFindProblem" 
+      v-if="isFindProblem"
       :target="target"
       :statement="statement"
+      :matches="matches"
+      :noMatches="noMatches"
     />
     <ReplaceProblem
       v-if="isReplaceProblem"
@@ -25,7 +27,9 @@ export default {
       target: "",
       statement: "",
       senario: "",
-      afterReplaceAnswer: ""
+      afterReplaceAnswer: "",
+      matches: [],
+      noMatches: []
     };
   },
   computed: {
@@ -46,6 +50,8 @@ export default {
     this.statement = response["statement"];
     this.senario = response["senario"];
     this.afterReplaceAnswer = response["after_replace_answer"];
+    this.matches = response["matches"];
+    this.noMatches = response["no_matches"];
   }
 };
 </script>

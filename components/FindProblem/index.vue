@@ -1,43 +1,34 @@
 <template>
   <div>
-    <p>{{ target }}にマッチさせてください</p>
+    <p>マッチさせる：　 {{ matches }}</p>
+    <p>マッチさせない： {{ noMatches }}</p>
     <b-form-input
       v-model="regex"
       :state="regexState"
       placeholder="正規表現"
     ></b-form-input>
-    <p v-html="coloredStatement"></p>
+    <!-- <p v-html="coloredStatement"></p> -->
     <div v-show="regexState">
       <p>正解!</p>
-      <nuxt-link to="/regex">一覧へ戻る</nuxt-link>
     </div>
+    <nuxt-link to="/regex">一覧へ戻る</nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['target', 'statement'],
+  props: ["target", "statement", "matches", "noMatches"],
   data() {
     return {
-      regex: "",
+      regex: ""
     };
   },
   computed: {
     regexState() {
       try {
-        return this.target == this.statement.match(this.regex);
-      } catch (e) {
-        if (e instanceof SyntaxError) {
-        } else {
-          // logMyErrors(e);
-        }
-      }
-    },
-    coloredStatement() {
-      try {
-        return this.statement.replace(
-          new RegExp(`([\s\S]*)(${this.regex})([\s\S]*)`),
-          "<font color='red'>$2</font>"
+        return (
+          this.matches.every(v => v.match(this.regex)) &&
+          this.noMatches.every(v => !v.match(this.regex))
         );
       } catch (e) {
         if (e instanceof SyntaxError) {
@@ -45,7 +36,21 @@ export default {
           // logMyErrors(e);
         }
       }
-    }
+    },
+    // 応用して再使用する
+    // coloredStatement() {
+    //   try {
+    //     return this.statement.replace(
+    //       new RegExp(`([\s\S]*)(${this.regex})([\s\S]*)`),
+    //       "<font color='red'>$2</font>"
+    //     );
+    //   } catch (e) {
+    //     if (e instanceof SyntaxError) {
+    //     } else {
+    //       // logMyErrors(e);
+    //     }
+    //   }
+    // }
   }
 };
 </script>
