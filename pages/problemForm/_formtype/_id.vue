@@ -69,7 +69,7 @@ export default {
   },
   async fetch() {
     this.fetchProblemTypes();
-    this.fetchProblem() ;
+    this.fetchProblem();
   },
   computed: {
     isFindProblem() {

@@ -53,7 +53,25 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyB4X5Vj5GI1NdZ0JsLY0P5ROtiL2eUKdLY",
+          authDomain: "rails-container-prototype.firebaseapp.com",
+          databaseURL: "https://rails-container-prototype.firebaseio.com",
+          projectId: "rails-container-prototype",
+          storageBucket: "rails-container-prototype.appspot.com",
+          messagingSenderId: "902276587803",
+          appId: "1:902276587803:web:97def297c35af3fc1373be"
+        },
+        services: {
+          auth: true
+        },
+        onFirebaseHosting: true
+      }
+    ]
   ],
   axios: {
     baseURL: process.env.NODE_ENV == 'production' ? 'https://railsproto-uiqhtbcbda-an.a.run.app' : 'http://localhost:3000'

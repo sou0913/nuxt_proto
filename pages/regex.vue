@@ -5,12 +5,18 @@
       :total-rows="rows"
       @input="fetchProblems"
     ></b-pagination>
+    <b-button
+      v-b-modal.modal-prevent-closing
+      variant="primary"
+      class="float-right"
+      >管理モード</b-button
+    >
     <b-spinner v-if="loading" variant="primary" label="Spinning"></b-spinner>
     <b-table v-else striped hover :items="problems" :fields="fields">
       <template v-slot:cell(title)="data">
         <b-link :to="'/problem/' + data.item.id">{{ data.value }}</b-link>
       </template>
-      <template v-slot:cell(buttons)="data">
+      <template v-slot:cell(buttons)="data" v-if="admin">
         <b-button
           size="sm"
           variant="primary"
@@ -23,6 +29,7 @@
         </b-button>
       </template>
     </b-table>
+    <SignInModal />
   </div>
 </template>
 
@@ -33,11 +40,29 @@ export default {
       currentPage: 1,
       rows: 0,
       problems: [],
-      fields: ["id", "title", { key: "buttons", label: "" }]
+      fields: ["id", "title", { key: "buttons", label: "" }],
+      admin: false,
     };
   },
   async fetch() {
     this.fetchProblems(1);
+  },
+  created: function() {
+    const vi = this
+    this.$fireAuth.onAuthStateChanged(function(user) {
+      debugger
+      if (user) {
+        // User is signed in.
+        vi.admin = true
+        debugger
+        // ...
+      } else {
+        // User is signed out.
+        vi.admin = false
+        debugger
+        // ...
+      }
+    });
   },
   computed: {
     loading() {
