@@ -51,16 +51,13 @@ export default {
   created: function() {
     const vi = this;
     this.$fireAuth.onAuthStateChanged(function(user) {
-      debugger;
       if (user) {
         // User is signed in.
         vi.admin = true;
-        debugger;
         // ...
       } else {
         // User is signed out.
         vi.admin = false;
-        debugger;
         // ...
       }
     });

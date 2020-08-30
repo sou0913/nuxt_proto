@@ -26,9 +26,10 @@ export default {
   computed: {
     regexState() {
       try {
+        const regexp = new RegExp(this.regex, "g")
         return (
-          this.matches.every(v => v.match(this.regex) == v) &&
-          this.noMatches.every(v => !(v.match(this.regex) == v))
+          this.matches.every(v => v.match(regexp) == v) &&
+          this.noMatches.every(v => !(v.match(regexp) == v))
         );
       } catch (e) {
         if (e instanceof SyntaxError) {

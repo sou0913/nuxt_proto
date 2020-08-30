@@ -114,6 +114,7 @@ export default {
           problem: this.form
         });
         alert("登録しました");
+        this.$route.push("/regex");
       } catch (e) {
         alert(e);
       }
