@@ -5,6 +5,7 @@
       :total-rows="rows"
       @input="fetchProblems"
     ></b-pagination>
+    <b-button variant="success" to="/problemForm/new">新規追加</b-button>
     <b-button
       v-b-modal.modal-prevent-closing
       variant="primary"
@@ -41,25 +42,25 @@ export default {
       rows: 0,
       problems: [],
       fields: ["id", "title", { key: "buttons", label: "" }],
-      admin: false,
+      admin: false
     };
   },
   async fetch() {
     this.fetchProblems(1);
   },
   created: function() {
-    const vi = this
+    const vi = this;
     this.$fireAuth.onAuthStateChanged(function(user) {
-      debugger
+      debugger;
       if (user) {
         // User is signed in.
-        vi.admin = true
-        debugger
+        vi.admin = true;
+        debugger;
         // ...
       } else {
         // User is signed out.
-        vi.admin = false
-        debugger
+        vi.admin = false;
+        debugger;
         // ...
       }
     });
