@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <nuxt :nuxt-child-key="employees" />
+  <div>
     ようこそ、hello
   </div>
 </template>

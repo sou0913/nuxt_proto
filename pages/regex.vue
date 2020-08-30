@@ -10,12 +10,15 @@
       <template v-slot:cell(title)="data">
         <b-link :to="'/problem/' + data.item.id">{{ data.value }}</b-link>
       </template>
-      <template v-slot:cell(destroy)="data">
+      <template v-slot:cell(buttons)="data">
         <b-button
           size="sm"
-          class="float-right"
-          @click="destroyProblem(data.item.id)"
+          variant="primary"
+          :to="'/problemForm/edit/' + data.item.id"
         >
+          編集
+        </b-button>
+        <b-button size="sm" @click="destroyProblem(data.item.id)">
           削除
         </b-button>
       </template>
@@ -30,7 +33,7 @@ export default {
       currentPage: 1,
       rows: 0,
       problems: [],
-      fields: ["id", "title", { key: "destroy", label: "" }]
+      fields: ["id", "title", { key: "buttons", label: "" }]
     };
   },
   async fetch() {
