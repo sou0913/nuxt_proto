@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -45,8 +46,9 @@ export default {
       admin: false
     };
   },
-  async fetch() {
-    this.fetchProblems(1);
+  async asyncData({ $axios }) {
+    const response = await $axios.$get('/problems?page=1')
+    return { problems: response["problems"], rows: response["total_rows"] }
   },
   created: function() {
     const vi = this;

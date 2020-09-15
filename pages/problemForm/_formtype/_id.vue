@@ -125,6 +125,7 @@ export default {
           problem: this.form
         });
         alert("更新しました");
+        this.$router.push("/regex");
       } catch (e) {
         alert(e);
       }
