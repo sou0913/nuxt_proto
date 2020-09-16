@@ -50,7 +50,13 @@ export default {
     return { problems: response["problems"], rows: response["total_rows"] };
   },
   created: function() {
-    this.admin = this.checkAdmin();
+    this.$fireAuth.onAuthStateChanged((user) => {
+      if (user) {
+        this.admin = true
+      } else {
+        this.admin = false
+      }
+    });
   },
   computed: {
     loading() {
@@ -72,15 +78,6 @@ export default {
         alert(e);
       }
     },
-    checkAdmin() {
-      this.$fireAuth.onAuthStateChanged(function(user) {
-        if (user) {
-          return true
-        } else {
-          return false
-        }
-      });
-    }
   }
 };
 </script>

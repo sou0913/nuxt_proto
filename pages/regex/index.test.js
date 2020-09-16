@@ -6,11 +6,12 @@ jest.mock('axios', () => ({
   $get: jest.fn(() => Promise.resolve(mockAxiosGetResult)),
 }))
 
-const checkAdmin = jest.fn();
-checkAdmin.mockReturnValue(true);
+const $fireAuth = {
+  onAuthStateChanged: function(callback) { true }
+}
 
 it('fetches async when a button is clicked', () => {
-  const wrapper = shallowMount(Regex, { methods: { checkAdmin } })
+  const wrapper = shallowMount(Regex, { mocks: { $fireAuth } })
   wrapper.vm.fetchProblems(1)
   expect(wrapper.vm.problems).toStrictEqual([])
 })
