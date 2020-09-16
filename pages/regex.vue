@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -47,22 +46,11 @@ export default {
     };
   },
   async asyncData({ $axios }) {
-    const response = await $axios.$get('/problems?page=1')
-    return { problems: response["problems"], rows: response["total_rows"] }
+    const response = await $axios.$get("/problems?page=1");
+    return { problems: response["problems"], rows: response["total_rows"] };
   },
   created: function() {
-    const vi = this;
-    this.$fireAuth.onAuthStateChanged(function(user) {
-      if (user) {
-        // User is signed in.
-        vi.admin = true;
-        // ...
-      } else {
-        // User is signed out.
-        vi.admin = false;
-        // ...
-      }
-    });
+    this.admin = this.checkAdmin();
   },
   computed: {
     loading() {
@@ -83,6 +71,15 @@ export default {
       } catch (e) {
         alert(e);
       }
+    },
+    checkAdmin() {
+      this.$fireAuth.onAuthStateChanged(function(user) {
+        if (user) {
+          return true
+        } else {
+          return false
+        }
+      });
     }
   }
 };
